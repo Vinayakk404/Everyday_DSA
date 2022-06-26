@@ -1,0 +1,100 @@
+ for(int j=i-1;j>=0;j--)
+            {
+                if(heights[i]<=heights[j] and heights[i]!=0)
+                {
+                    c++;
+                   
+                    
+                }
+                else
+                {
+                    break;
+                }
+                
+            }
+            for(int k=i;k<heights.size();k++)
+            {
+                 if(heights[i]<=heights[k] and  heights[i]!=0)
+                {
+                    c++; 
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        int c=0;int area=0,max_area=INT_MIN;vector<int>v1;vector<int>v2;stack<int>s1;stack<int>s2;
+        for(int i=heights.size()-1;i>=0;i--)
+        {
+           if(i==heights.size()-1)
+           {
+               v1.push_back(0);
+           }
+           else
+           {
+               s1.push(i+1);
+               while(!s1.empty() and heights[s1.top()]>=heights[i])
+               {
+                   s1.pop();
+               }
+               if(s1.empty())
+               {
+                   v1.push_back(0);
+               }
+               else
+               {
+                   v1.push_back(s1.top());
+               }
+           }
+        }
+         for(int i=0;i<heights.size();i++)
+        {
+           if(i==0)
+           {
+               v2.push_back(0);
+           }
+           else
+           {
+               s2.push(i-1);
+               while(!s2.empty() and heights[s2.top()]>=heights[i])
+               {
+                   s2.pop();
+               }
+               if(s2.empty())
+               {
+                   v2.push_back(0);
+               }
+               else
+               {
+                   v2.push_back(s2.top());
+               }
+           }
+        }
+        reverse(v1.begin(),v1.end());
+        
+        for(auto i:v1)
+        {a
+            cout<<i<<endl;
+        }
+        cout<<"FOR V2"<<endl;
+        for(auto i:v2)
+        {
+            cout<<i<<endl;
+        }
+        for(int i=0;i<heights.size();i++)
+        {
+             area=(v1[i]-v2[i])*heights[i];
+            max_area=max(max_area,area);
+        }
+        
+           
+           return max_area;
+        
+    
+    return 1;
+    }
+};
